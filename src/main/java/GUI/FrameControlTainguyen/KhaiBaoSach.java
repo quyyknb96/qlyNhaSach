@@ -7,15 +7,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,12 +20,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
-public class KhaiBaoSach extends JFrame {
+public class KhaiBaoSach extends JInternalFrame {
 	private JTextField tfMaSach;
 	private JTextField tfTenSach;
 	private JTextField tfTenTacGia;
@@ -48,17 +42,22 @@ public class KhaiBaoSach extends JFrame {
 	private JTextField tfMaLinhVuc;
 	private JTextField tfGiaNhap;
 
+	@Override
+	public void addInternalFrameListener(InternalFrameListener l) {
+		super.addInternalFrameListener(l);
+	}
+
 	public KhaiBaoSach() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.Login.class.getResource("/data/img/kb.png")));
+//		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.Login.class.getResource("/data/img/kb.png")));
 		setBounds(100, 100, 617, 288);
 		getContentPane().setLayout(null);
 		setTitle("Khai báo thông tin sách");
-		setLocationRelativeTo(null);
+//		setLocationRelativeTo(null);
 		setResizable(false);
 
 		JPanel p1 = new JPanel();
-		p1.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Th\u00F4ng tin s\u00E1ch", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		p1.setBorder(new TitledBorder(new LineBorder(new Color(192, 192, 192)), "Thông tin sách", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		p1.setBounds(10, 11, 308, 233);
 		getContentPane().add(p1);
 		p1.setLayout(null);
@@ -212,9 +211,9 @@ public class KhaiBaoSach extends JFrame {
 		bThoat.setContentAreaFilled(false);
 		getContentPane().add(bThoat);
 
-		this.addWindowListener(new WindowAdapter() {
-
-			public void windowOpened(WindowEvent ev) {
+		InternalFrameListener listener = new InternalFrameListener() {
+			@Override
+			public void internalFrameOpened(InternalFrameEvent e) {
 				try {
 
 					Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
@@ -227,16 +226,16 @@ public class KhaiBaoSach extends JFrame {
 					}
 
 
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-				
+
 				try {
 
 					Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
 					String sql2 = "SELECT MALINHVUC, TENLINHVUC FROM LINHVUC";
 					ResultSet rs2 = statement.executeQuery(sql2);
-					
+
 					while (rs2.next()) {
 						String id = rs2.getString("MALINHVUC");
 						String name = rs2.getString("TENLINHVUC");
@@ -244,12 +243,43 @@ public class KhaiBaoSach extends JFrame {
 
 					}
 
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
+			}
+
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
 
 			}
-		});
+
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+
+			}
+
+			@Override
+			public void internalFrameIconified(InternalFrameEvent e) {
+
+			}
+
+			@Override
+			public void internalFrameDeiconified(InternalFrameEvent e) {
+
+			}
+
+			@Override
+			public void internalFrameActivated(InternalFrameEvent e) {
+
+			}
+
+			@Override
+			public void internalFrameDeactivated(InternalFrameEvent e) {
+
+			}
+		};
+
+		this.addInternalFrameListener(listener);
 		
 		tfTenTacGia.addActionListener(new ActionListener() {
 			

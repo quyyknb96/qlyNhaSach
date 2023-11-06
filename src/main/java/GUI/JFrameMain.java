@@ -1,27 +1,15 @@
 package GUI;
 
-import GUI.Menu.JIFBanHang;
-import GUI.Menu.JIFBaoCao;
-import GUI.Menu.JIFTainguyen;
-import GUI.Menu.JIFHeThong;
-import GUI.Menu.JIFThongtin;
-import GUI.Menu.JIFKhuyenmai;
-//import GUI.Menu.JIFCongcu;
-import GUI.Menu.JIFCongcu1;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JLabel;
-import java.awt.Toolkit;
+import GUI.Menu.*;
+
+import javax.swing.*;
+import javax.swing.plaf.DesktopPaneUI;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComponent;
-import javax.swing.JInternalFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.DesktopPaneUI;
 
 
 /**
@@ -30,6 +18,28 @@ import javax.swing.plaf.DesktopPaneUI;
  */
 public class JFrameMain extends javax.swing.JFrame implements ActionListener {
     JLabel lbUser, lbquyen;
+
+    private JDesktopPane desktop;
+    private JDesktopPane desktopCN;
+    private JButton jButtonBanHang;
+    private JButton jButtonBaoCao;
+    private JButton jButtonCongcu;
+    private JButton jButtonExit;
+    private JButton jButtonHeThong;
+    private JButton jButtonKhuyenmai;
+    private JButton jButtonLogout;
+    private JButton jButtonTainguyen;
+    private JButton jButtonThongtin;
+    private JButton jButtonThongtin1;
+    private JInternalFrame jInternalFrame1;
+    private JLabel jLabel1;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JPanel jPanelTab;
 
     //AutoSuggest _tenKhach = null;
     public JFrameMain() {
@@ -78,8 +88,6 @@ public class JFrameMain extends javax.swing.JFrame implements ActionListener {
 
         try {
             frame = new JIFTainguyen();
-            // new loginJFrame().show();
-            // dispose();
             setSize(frame);
             frame.setVisible(true);
             frame.setDesktop(desktopCN);
@@ -100,38 +108,38 @@ public class JFrameMain extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        desktopCN = new javax.swing.JDesktopPane();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanelTab = new javax.swing.JPanel();
-        jButtonThongtin = new javax.swing.JButton();
-        jButtonBanHang = new javax.swing.JButton();
-        jButtonHeThong = new javax.swing.JButton();
-        jButtonTainguyen = new javax.swing.JButton();
-        jButtonThongtin1 = new javax.swing.JButton();
-        jButtonKhuyenmai = new javax.swing.JButton();
-        jButtonCongcu = new javax.swing.JButton();
-        jButtonBaoCao = new javax.swing.JButton();
-        jButtonLogout = new javax.swing.JButton();
-        jButtonExit = new javax.swing.JButton();
-        desktop = new javax.swing.JDesktopPane();
+        jInternalFrame1 = new JInternalFrame();
+        desktopCN = new JDesktopPane();
+        jLabel5 = new JLabel();
+        jLabel3 = new JLabel();
+        jLabel1 = new JLabel();
+        jLabel4 = new JLabel();
+        jLabel6 = new JLabel();
+        jLabel7 = new JLabel();
+        jLabel8 = new JLabel();
+        jPanelTab = new JPanel();
+        jButtonThongtin = new JButton();
+        jButtonBanHang = new JButton();
+        jButtonHeThong = new JButton();
+        jButtonTainguyen = new JButton();
+        jButtonThongtin1 = new JButton();
+        jButtonKhuyenmai = new JButton();
+        jButtonCongcu = new JButton();
+        jButtonBaoCao = new JButton();
+        jButtonLogout = new JButton();
+        jButtonExit = new JButton();
+        desktop = new JDesktopPane();
 
         jInternalFrame1.setVisible(true);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        GroupLayout jInternalFrame1Layout = new GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
-                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGap(0, 0, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
-                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -252,42 +260,42 @@ public class JFrameMain extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        javax.swing.GroupLayout jPanelTabLayout = new javax.swing.GroupLayout(jPanelTab);
+        GroupLayout jPanelTabLayout = new GroupLayout(jPanelTab);
         jPanelTab.setLayout(jPanelTabLayout);
         jPanelTabLayout.setHorizontalGroup(
-                jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanelTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelTabLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButtonThongtin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonHeThong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonTainguyen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonThongtin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonCongcu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonBaoCao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanelTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonThongtin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonBanHang, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonHeThong, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonTainguyen, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonThongtin1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonKhuyenmai, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonCongcu, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonBaoCao, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         jPanelTabLayout.setVerticalGroup(
-                jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanelTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelTabLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonTainguyen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonTainguyen, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonThongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonThongtin, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonCongcu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonCongcu, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonBanHang, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonBaoCao, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonKhuyenmai, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonHeThong, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonHeThong, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addGap(5, 5, 5)
-                                .addComponent(jButtonThongtin1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonThongtin1, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
 
@@ -311,37 +319,37 @@ public class JFrameMain extends javax.swing.JFrame implements ActionListener {
 
         desktop.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                                .addComponent(jButtonLogout, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                                 .addGap(29, 29, 29)
-                                                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jPanelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jButtonExit, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jPanelTab, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(desktop))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(desktopCN, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                                .addComponent(desktopCN, GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addComponent(desktopCN)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(desktop, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jPanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jPanelTab, GroupLayout.PREFERRED_SIZE, 425, GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jButtonExit)
-                                                        .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(jButtonLogout, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -505,30 +513,6 @@ public class JFrameMain extends javax.swing.JFrame implements ActionListener {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
-    private javax.swing.JDesktopPane desktopCN;
-    private javax.swing.JButton jButtonBanHang;
-    private javax.swing.JButton jButtonBaoCao;
-    private javax.swing.JButton jButtonCongcu;
-    private javax.swing.JButton jButtonExit;
-    private javax.swing.JButton jButtonHeThong;
-    private javax.swing.JButton jButtonKhuyenmai;
-    private javax.swing.JButton jButtonLogout;
-    private javax.swing.JButton jButtonTainguyen;
-    private javax.swing.JButton jButtonThongtin;
-    private javax.swing.JButton jButtonThongtin1;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanelTab;
-    // End of variables declaration//GEN-END:variables
 
 
     @Override
