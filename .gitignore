@@ -1,3 +1,5 @@
 /qlyNhaSach.iml
 .idea
 target
+/src/main/resources/META-INF/MANIFEST.MF
+out
