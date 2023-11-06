@@ -1,21 +1,21 @@
 
 package GUI.Menu;
 
-import GUI.FrameControlTainguyen.KhaiBaoSach;
-import GUI.FrameControlTainguyen.NhapSach;
 import GUI.FrameControlTainguyen.ChinhSuaThongTinSach;
 import GUI.FrameControlTainguyen.HuyThongTinSach;
+import GUI.FrameControlTainguyen.KhaiBaoSach;
+import GUI.FrameControlTainguyen.NhapSach;
+
+import javax.swing.*;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 
 /**
  *
  * @author 10520_000
  */
-public class JIFTainguyen extends javax.swing.JInternalFrame {
+public class JIFTainguyen extends JInternalFrame {
 
     private JDesktopPane desktop;
     /**
@@ -182,12 +182,12 @@ public class JIFTainguyen extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(desktop.getComponentCount() != 0)
             desktop.getComponent(0).setVisible(false);
-        //desktop.removeAll();
+        desktop.removeAll();
         KhaiBaoSach frame;
         try {
             frame = new KhaiBaoSach();
+            desktop.add(frame);
             frame.setVisible(true);
-            getDesktop().add(frame);
             frame.setSelected(true);
         } catch (Exception ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
@@ -197,7 +197,7 @@ public class JIFTainguyen extends javax.swing.JInternalFrame {
     private void jButtonChinhSuaThongTinSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChinhSuaThongTinSachActionPerformed
         // TODO add your handling code here:
         if(desktop.getComponentCount() != 0)
-        desktop.getComponent(0).setVisible(false);
+            desktop.getComponent(0).setVisible(false);
        // desktop.removeAll();
         ChinhSuaThongTinSach frame;
         try {

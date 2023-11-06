@@ -1,6 +1,7 @@
 package GUI;
 
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ThongTin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin phần mềm");
         setBackground(new java.awt.Color(255, 102, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -47,12 +48,9 @@ public class ThongTin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jLabel4.setText("Build and Copyright by A7 Group");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        jLabel5.setText("Khoa Tin học - Đại học Sư phạm Đà Nẵng");
-
         jList1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Tác giả:", "Lê Hoàng Anh" };
+            String[] strings = { "Tác giả:", "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

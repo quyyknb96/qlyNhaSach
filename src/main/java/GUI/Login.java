@@ -80,7 +80,7 @@ public class Login extends JFrame {
 							if(rs.next()){
 								if(tfUsername.getText().equals(rs.getString("USERNAME"))&& pfPassword.getPassword().equals(rs.getString("PASSWORD")));{
 									JOptionPane.showMessageDialog(null,"Đăng nhập thành công","Login successfuly",JOptionPane.INFORMATION_MESSAGE);
-									jframeMain menu = new jframeMain();
+									JFrameMain menu = new JFrameMain();
 									menu.setTenUser(tfUsername.getText());
 									menu.setVisible(true);
 									dispose();

@@ -28,70 +28,74 @@ import javax.swing.plaf.DesktopPaneUI;
  *
  * @author 10520_000
  */
-public class jframeMain extends javax.swing.JFrame implements ActionListener{
-JLabel lbUser, lbquyen ;
+public class JFrameMain extends javax.swing.JFrame implements ActionListener {
+    JLabel lbUser, lbquyen;
+
     //AutoSuggest _tenKhach = null;
-    public jframeMain() {
-       lbUser = new JLabel("");
-		lbUser.setForeground(Color.WHITE);
-		lbUser.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lbUser.setBackground(Color.WHITE);
-		lbUser.setBounds(1180,665, 170, 26);
-		getContentPane().add(lbUser);
-     lbquyen = new JLabel("Đăng nhập với quyền:");
-		lbquyen.setForeground(Color.WHITE);
-		lbquyen.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lbquyen.setBackground(Color.WHITE);
-		lbquyen.setBounds(1015,665, 170, 26);
-		getContentPane().add(lbquyen);
+    public JFrameMain() {
+        lbUser = new JLabel("");
+        lbUser.setForeground(Color.BLACK);
+        lbUser.setFont(new Font("Times New Roman", Font.BOLD, 17));
+        lbUser.setBackground(Color.BLACK);
+        lbUser.setBounds(1180, 665, 170, 26);
+        getContentPane().add(lbUser);
+
+        lbquyen = new JLabel("Đăng nhập với quyền:");
+        lbquyen.setForeground(Color.BLACK);
+        lbquyen.setFont(new Font("Times New Roman", Font.BOLD, 17));
+        lbquyen.setBackground(Color.BLACK);
+        lbquyen.setBounds(1015, 665, 170, 26);
+        getContentPane().add(lbquyen);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/Image/login.png"));
-        
-        
+
+
         initComponents();
-              
-        
+
+
         //Make dragging a little faster but perhaps uglier.        
-         setExtendedState(MAXIMIZED_BOTH);
-         
-         // Set giao dien cac ChildFrom
-         desktop.setUI(new DesktopPaneUI() {
-             @Override
-        public void installUI(JComponent c) {
-            // TODO Auto-generated method stub
-            try {
-             // UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-               // UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-               // UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+        setExtendedState(MAXIMIZED_BOTH);
+
+        // Set giao dien cac ChildFrom
+        desktop.setUI(new DesktopPaneUI() {
+            @Override
+            public void installUI(JComponent c) {
+                // TODO Auto-generated method stub
+                try {
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                         UnsupportedLookAndFeelException e) {
+                    Logger.getLogger(JFrameMain.class.getName()).log(Level.SEVERE, null, e);
+                }
+                super.installUI(c);
             }
-            super.installUI(c);
-        }          
         });
-        
- 
+
+
         JIFTainguyen frame;
-        
+
         try {
             frame = new JIFTainguyen();
-           // new loginJFrame().show();
-           // dispose();
+            // new loginJFrame().show();
+            // dispose();
             setSize(frame);
             frame.setVisible(true);
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-                       
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     // Set kich thuoc cac tab menu
-    private void setSize(JInternalFrame frm){
+    private void setSize(JInternalFrame frm) {
         frm.setSize(283, 270);
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -123,12 +127,12 @@ JLabel lbUser, lbquyen ;
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -251,40 +255,40 @@ JLabel lbUser, lbquyen ;
         javax.swing.GroupLayout jPanelTabLayout = new javax.swing.GroupLayout(jPanelTab);
         jPanelTab.setLayout(jPanelTabLayout);
         jPanelTabLayout.setHorizontalGroup(
-            jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonThongtin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonHeThong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonTainguyen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonThongtin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCongcu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonBaoCao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelTabLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButtonThongtin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonHeThong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonTainguyen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonThongtin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonCongcu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonBaoCao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         jPanelTabLayout.setVerticalGroup(
-            jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTabLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonTainguyen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonThongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCongcu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonHeThong, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jButtonThongtin1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                jPanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelTabLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonTainguyen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonThongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonCongcu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonKhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonHeThong, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(jButtonThongtin1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         jButtonLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/logout.png"))); // NOI18N
@@ -310,35 +314,35 @@ JLabel lbUser, lbquyen ;
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(desktop))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopCN, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                                .addGap(29, 29, 29)
+                                                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jPanelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(desktop))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(desktopCN, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(desktopCN)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonExit)
-                            .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desktopCN)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jPanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jButtonExit)
+                                                        .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -354,7 +358,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,7 +374,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -386,7 +390,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -402,7 +406,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -418,7 +422,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -430,14 +434,14 @@ JLabel lbUser, lbquyen ;
     }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
-       new Login().show();
-       dispose();        
+        new Login().show();
+        dispose();
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonThongtin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThongTinActionPerformed
         // TODO add your handling code here:
-       new ThongTin().show();
-             
+        new ThongTin().show();
+
     }//GEN-LAST:event_jButtonThongTinActionPerformed
 
     private void jButtonKhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKhuyenmaiActionPerformed
@@ -450,7 +454,7 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -458,7 +462,7 @@ JLabel lbUser, lbquyen ;
 
     private void jButtonBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBaoCaoActionPerformed
         // TODO add your handling code here:
-         JIFBaoCao frame;
+        JIFBaoCao frame;
         try {
             frame = new JIFBaoCao();
             setSize(frame);
@@ -466,47 +470,42 @@ JLabel lbUser, lbquyen ;
             frame.setDesktop(desktopCN);
             desktop.add(frame);
             frame.setSelected(true);
-            
+
         } catch (PropertyVetoException ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBaoCaoActionPerformed
 
-    
-    
-    public void setTenUser(String username){ 
-		this.lbUser.setText(username);
-	}
-    public static void main(String args[]) 
-    {
-       
-        try 
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
-            {
-                if ("Nimbus".equals(info.getName())) 
-                {
+
+    public void setTenUser(String username) {
+        this.lbUser.setText(username);
+    }
+
+    public static void main(String args[]) {
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     //javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
-        {
-            
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 javax.swing.UnsupportedLookAndFeelException ex) {
+
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new jframeMain().setVisible(true);
+                new JFrameMain().setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JDesktopPane desktopCN;
@@ -530,8 +529,7 @@ JLabel lbUser, lbquyen ;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanelTab;
     // End of variables declaration//GEN-END:variables
-    
-     
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -542,5 +540,5 @@ JLabel lbUser, lbquyen ;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+
 }
