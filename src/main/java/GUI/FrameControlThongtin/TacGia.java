@@ -158,7 +158,7 @@ public class TacGia extends JFrame {
 			public void mouseExited(MouseEvent ev) {
 				try {
 					
-					if(tfMaTacGia.getText().length()>4){
+					if(tfMaTacGia.getText().length()>5){
 						JOptionPane.showMessageDialog(null,"Mã tác giả không đúng quy định");
 						tfMaTacGia.requestFocus();
 					}
@@ -193,7 +193,7 @@ public class TacGia extends JFrame {
 				}
 				
 				else{
-					  if(tfMaTacGia.getText().length()!= 4){
+					  if(tfMaTacGia.getText().length() > 5){
 						JOptionPane.showMessageDialog(null,"Mã tác giả không đúng quy định");
 						tfMaTacGia.requestFocus();
 					   }
