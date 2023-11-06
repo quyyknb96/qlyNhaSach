@@ -379,7 +379,7 @@ public class KhaiBaoSach extends JFrame {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						String masach = tfMaSach.getText();
-						if (masach.length() == 13) {
+						if (masach.length() <= 13) {
 							try {
 								Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
 								String sql = "SELECT MASACH FROM SACH";
@@ -394,9 +394,7 @@ public class KhaiBaoSach extends JFrame {
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						}
-						
-						if(masach.length()>13){
+						} else {
 							JOptionPane.showMessageDialog(null,"Mã sách không đúng quy định!","Lỗi",JOptionPane.ERROR_MESSAGE);
 							tfMaSach.setText("");
 						}

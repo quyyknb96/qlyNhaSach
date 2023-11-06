@@ -247,7 +247,7 @@ public class TacGia extends JFrame {
 						quequan = "NULL";
 					}
 					
-					if(matacgia.length()!=4){
+					if(matacgia.length() > 5){
 						JOptionPane.showMessageDialog(null,"Mã tác giả không đúng quy định");
 						tfMaTacGia.requestFocus();
 					}

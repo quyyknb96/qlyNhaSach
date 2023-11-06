@@ -181,7 +181,7 @@ public class LinhVuc extends JFrame {
 						JOptionPane.showMessageDialog(null,"Vui lòng điền đầy đủ thoongg tin");
 					}
 					
-					else if(tfMaLinhVuc.getText().length()<2){
+					else if(tfMaLinhVuc.getText().length()>5){
 						JOptionPane.showMessageDialog(null,"Mã loại sách không đúng quy định");
 						tfMaLinhVuc.requestFocus();
 					}

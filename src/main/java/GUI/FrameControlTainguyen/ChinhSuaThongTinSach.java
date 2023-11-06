@@ -470,16 +470,16 @@ public class ChinhSuaThongTinSach extends JFrame {
 					else {
 						
 						JOptionPane.showMessageDialog(null,"Lỗi cập nhật","Cập nhật",JOptionPane.ERROR_MESSAGE);
-						if(ms.length()!= 13){
+						if(ms.length() > 13){
 							JOptionPane.showMessageDialog(null,"Mã sách không đúng quy định","Cập nhật",JOptionPane.ERROR_MESSAGE);
 						}
-						if(tg.length()!= 4){
+						if(tg.length() > 5){
 							JOptionPane.showMessageDialog(null,"Mã tác giả không đúng quy định","Cập nhật",JOptionPane.ERROR_MESSAGE);
 						}
-						if(ls.length()!= 2){
+						if(ls.length() > 5){
 							JOptionPane.showMessageDialog(null,"Mã loại sách không đúng quy định","Cập nhật",JOptionPane.ERROR_MESSAGE);
 						}
-						if(lv.length()!= 2){
+						if(lv.length() > 5){
 							JOptionPane.showMessageDialog(null,"Mã lĩnh vực không đúng quy định","Cập nhật",JOptionPane.ERROR_MESSAGE);
 						}
 					}

@@ -191,7 +191,7 @@ public class LoaiSach extends JFrame {
 						JOptionPane.showMessageDialog(null,"Vui lòng điền đầy đủ thoongg tin");
 					}
 					
-					else if(tfMaLoaiSach.getText().length()<2){
+					else if(tfMaLoaiSach.getText().length()  > 5){
 						JOptionPane.showMessageDialog(null,"Mã loại sách không đúng quy định");
 						tfMaLoaiSach.requestFocus();
 					}
