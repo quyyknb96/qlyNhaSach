@@ -29,4 +29,13 @@ public class Tuple2 {
     public String toString() {
         return this.K2;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Tuple2) {
+            return this.getK1().equals(((Tuple2) obj).getK1())
+                    && this.getK2().equals(((Tuple2) obj).getK2());
+        }
+        return false;
+    }
 }

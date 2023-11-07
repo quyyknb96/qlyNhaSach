@@ -31,6 +31,8 @@ public class KhaiBaoSach extends JFrame {
     private JTextField tfMaLinhVuc;
     private JTextField tfGiaNhap;
 
+    private JButton bSearchTG;
+
     public KhaiBaoSach() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.Login.class.getResource("/data/img/kb.png")));
@@ -46,79 +48,86 @@ public class KhaiBaoSach extends JFrame {
         getContentPane().add(p1);
         p1.setLayout(null);
 
-        JLabel lbMaSach = new JLabel("Mã sách");
+        JLabel lbMaSach = new JLabel("Mã sách*");
         lbMaSach.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbMaSach.setBounds(10, 23, 53, 15);
+        lbMaSach.setBounds(10, 23, 65, 15);
         p1.add(lbMaSach);
 
-        JLabel lbTenSach = new JLabel("Tên sách");
+        JLabel lbTenSach = new JLabel("Tên sách*");
         lbTenSach.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbTenSach.setBounds(10, 59, 58, 15);
+        lbTenSach.setBounds(10, 59, 65, 15);
         p1.add(lbTenSach);
 
         JLabel lbTenTacGia = new JLabel("Tên tác giả");
         lbTenTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbTenTacGia.setBounds(10, 95, 65, 15);
+        lbTenTacGia.setBounds(10, 95, 80, 15);
         p1.add(lbTenTacGia);
 
         tfMaSach = new JTextField();
-        tfMaSach.setBounds(83, 21, 206, 20);
+        tfMaSach.setBounds(100, 21, 206, 20);
         p1.add(tfMaSach);
         tfMaSach.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         tfTenSach = new JTextField();
         tfTenSach.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfTenSach.setBounds(83, 57, 206, 20);
+        tfTenSach.setBounds(100, 57, 206, 20);
         p1.add(tfTenSach);
 
         tfTenTacGia = new JTextField();
         tfTenTacGia.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfTenTacGia.setBounds(83, 93, 206, 20);
+        tfTenTacGia.setBounds(100, 93, 206, 20);
         p1.add(tfTenTacGia);
 
-        lbMaTacGia = new JLabel("Mã tác giả");
+        ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(KhaiBaoSach.class.getResource("/data/img/search.png")));
+        Image image = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        ImageIcon iconResize = new ImageIcon(image);
+        bSearchTG = new JButton(iconResize);
+        bSearchTG.setBounds(310, 93, 20, 20);
+        p1.add(bSearchTG);
+
+        lbMaTacGia = new JLabel("Mã tác giả*");
         lbMaTacGia.setBounds(10, 131, 72, 15);
         p1.add(lbMaTacGia);
         lbMaTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
-        lbMaLoaiSach = new JLabel("Mã loại sách");
-        lbMaLoaiSach.setBounds(10, 167, 72, 15);
+        lbMaLoaiSach = new JLabel("Mã loại sách*");
+        lbMaLoaiSach.setBounds(10, 167, 85, 15);
         p1.add(lbMaLoaiSach);
         lbMaLoaiSach.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
-        lbMaLinhVuc = new JLabel("Mã lĩnh vực");
-        lbMaLinhVuc.setBounds(10, 203, 73, 15);
+        lbMaLinhVuc = new JLabel("Mã lĩnh vực*");
+        lbMaLinhVuc.setBounds(10, 203, 85, 15);
         p1.add(lbMaLinhVuc);
         lbMaLinhVuc.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
         tfMaTacGia = new JTextField();
         tfMaTacGia.setEditable(false);
-        tfMaTacGia.setBounds(83, 129, 65, 20);
+        tfMaTacGia.setBounds(100, 129, 65, 20);
         p1.add(tfMaTacGia);
         tfMaTacGia.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
         tfMaLoaiSach = new JTextField();
         tfMaLoaiSach.setEditable(false);
         tfMaLoaiSach.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfMaLoaiSach.setBounds(83, 165, 65, 20);
+        tfMaLoaiSach.setBounds(100, 165, 65, 20);
         p1.add(tfMaLoaiSach);
 
         tfMaLinhVuc = new JTextField();
         tfMaLinhVuc.setEditable(false);
         tfMaLinhVuc.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfMaLinhVuc.setBounds(83, 201, 65, 20);
+        tfMaLinhVuc.setBounds(100, 201, 65, 20);
         p1.add(tfMaLinhVuc);
 
         cbMaTacGia = new JComboBox();
-        cbMaTacGia.setBounds(168, 128, 150, 23);
+        cbMaTacGia.setBounds(175, 128, 150, 23);
         p1.add(cbMaTacGia);
 
         cbMaLoaiSach = new JComboBox();
-        cbMaLoaiSach.setBounds(168, 164, 150, 23);
+        cbMaLoaiSach.setBounds(175, 164, 150, 23);
         p1.add(cbMaLoaiSach);
 
         cbMaLinhVuc = new JComboBox();
-        cbMaLinhVuc.setBounds(168, 200, 150, 23);
+        cbMaLinhVuc.setBounds(175, 200, 150, 23);
         p1.add(cbMaLinhVuc);
 
         JPanel p3 = new JPanel();
@@ -137,7 +146,7 @@ public class KhaiBaoSach extends JFrame {
         lbNamXB.setBounds(10, 60, 79, 14);
         p3.add(lbNamXB);
 
-        JLabel lbGiaBia = new JLabel("Giá bìa");
+        JLabel lbGiaBia = new JLabel("Giá bìa*");
         lbGiaBia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         lbGiaBia.setBounds(10, 97, 53, 14);
         p3.add(lbGiaBia);
@@ -149,32 +158,32 @@ public class KhaiBaoSach extends JFrame {
 
         tfLanTB = new JTextField();
         tfLanTB.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfLanTB.setBounds(98, 24, 53, 20);
+        tfLanTB.setBounds(105, 24, 53, 20);
         p3.add(tfLanTB);
 
         tfNamXB = new JTextField();
         tfNamXB.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfNamXB.setBounds(98, 58, 67, 20);
+        tfNamXB.setBounds(105, 58, 67, 20);
         p3.add(tfNamXB);
 
         tfGiaBia = new JTextField();
         tfGiaBia.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfGiaBia.setBounds(98, 95, 91, 20);
+        tfGiaBia.setBounds(105, 95, 91, 20);
         p3.add(tfGiaBia);
 
         tfNhaXB = new JTextField();
         tfNhaXB.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfNhaXB.setBounds(98, 130, 131, 20);
+        tfNhaXB.setBounds(105, 130, 131, 20);
         p3.add(tfNhaXB);
 
-        JLabel lbGiaNhap = new JLabel("Giá nhập");
+        JLabel lbGiaNhap = new JLabel("Giá nhập*");
         lbGiaNhap.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbGiaNhap.setBounds(10, 165, 53, 14);
+        lbGiaNhap.setBounds(10, 165, 60, 14);
         p3.add(lbGiaNhap);
 
         tfGiaNhap = new JTextField();
         tfGiaNhap.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-        tfGiaNhap.setBounds(98, 165, 131, 20);
+        tfGiaNhap.setBounds(105, 165, 131, 20);
         p3.add(tfGiaNhap);
 
         bKhaiBao = new JButton("Khai báo");
@@ -198,6 +207,8 @@ public class KhaiBaoSach extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
+                reloadComboBoxTacGia();
+
                 try {
 
                     Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
@@ -233,30 +244,40 @@ public class KhaiBaoSach extends JFrame {
             }
         });
 
-        tfTenTacGia.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-                try {
-                    Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                    String sql = String.format("SELECT MATACGIA, TENTACGIA FROM TACGIA WHERE TENTACGIA = '%s'", tfTenTacGia.getText());
-                    ResultSet rs = statement.executeQuery(sql);
-                    while (rs.next()) {
-                        String id = rs.getString("MATACGIA");
-                        String name = rs.getString("MATACGIA");
-                        cbMaTacGia.addItem(new Tuple2(id, name));
-                        rs.updateRow();
+        bSearchTG.addActionListener(e -> {
+            try {
+                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+                String sql = String.format("SELECT MATACGIA, TENTACGIA FROM TACGIA WHERE TENTACGIA = '%s'", tfTenTacGia.getText());
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    String id = rs.getString("MATACGIA");
+                    String name = rs.getString("TENTACGIA");
+                    Tuple2 selected = new Tuple2(id, name);
+                    for (int i = 0; i < cbMaTacGia.getItemCount(); i++) {
+                        Tuple2 value = cbMaTacGia.getItemAt(i);
+                        if (value.equals(selected)) {
+                            cbMaTacGia.setSelectedItem(value);
+                            return;
+                        }
                     }
-
-                    if (cbMaTacGia.getItemCount() == 0) {
-                        NhapTacGia tg = new NhapTacGia();
-                        tg.setTenTacGia(tfTenTacGia.getText());
-                        tg.setVisible(true);
-//                        tg.setFocusable();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+
+                NhapTacGia tg = new NhapTacGia();
+                tg.setTenTacGia(tfTenTacGia.getText());
+                tg.setVisible(true);
+                tg.setFocusable(true);
+
+                tg.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        Object selected = cbMaTacGia.getSelectedItem();
+                        reloadComboBoxTacGia();
+                        cbMaTacGia.setSelectedItem(selected);
+                    }
+                });
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
 
@@ -280,6 +301,8 @@ public class KhaiBaoSach extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (cbMaTacGia.getSelectedItem() == null)
+                    return;
                 tfMaTacGia.setText(((Tuple2) cbMaTacGia.getSelectedItem()).getK1());
             }
         });
@@ -340,7 +363,6 @@ public class KhaiBaoSach extends JFrame {
                 tfMaLinhVuc.setText("");
                 tfMaLoaiSach.setText("");
                 tfMaTacGia.setEditable(false);
-                cbMaTacGia.removeAllItems();
                 tfMaTacGia.setText("");
                 tfGiaNhap.setText("");
             }
@@ -422,7 +444,7 @@ public class KhaiBaoSach extends JFrame {
                     } catch (Exception ignore) {
                     }
 
-                    if (ValidateUtil.checkAllNotNull(masach, tensach, matacgia, malinhvuc, maloaisach, gianhap, giabia)) {
+                    if (ValidateUtil.checkAnyEmpty(masach, tensach, matacgia, malinhvuc, maloaisach, gianhap, giabia)) {
                         JOptionPane.showMessageDialog(null, "Yêu cầu nhập đầy đủ thông tin", "Thông báo", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
@@ -460,6 +482,22 @@ public class KhaiBaoSach extends JFrame {
                 }
             }
         });
+    }
+
+    private void reloadComboBoxTacGia() {
+        try {
+            cbMaTacGia.removeAllItems();
+            Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+            String sql = "SELECT MATACGIA, TENTACGIA FROM TACGIA";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                String id = rs.getString("MATACGIA");
+                String name = rs.getString("TENTACGIA");
+                cbMaTacGia.addItem(new Tuple2(id, name));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

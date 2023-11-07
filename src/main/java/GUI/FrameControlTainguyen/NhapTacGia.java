@@ -1,5 +1,7 @@
 package GUI.FrameControlTainguyen;
 
+import util.ValidateUtil;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -39,24 +41,24 @@ public class NhapTacGia extends JFrame {
 		setResizable(false);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Nh\u1EADp d\u1EEF li\u1EC7u", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null, "Nhập dữ liệu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 284, 204);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lbMaTacGia = new JLabel("Mã tác giả");
+		JLabel lbMaTacGia = new JLabel("Mã tác giả*");
 		lbMaTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lbMaTacGia.setEnabled(true);
-		lbMaTacGia.setBounds(10, 23, 61, 15);
+		lbMaTacGia.setBounds(10, 23, 70, 15);
 		panel.add(lbMaTacGia);
 		
-		JLabel lbTenTacGia = new JLabel("Tên tác giả");
+		JLabel lbTenTacGia = new JLabel("Tên tác giả*");
 		lbTenTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lbTenTacGia.setEnabled(true);
 		lbTenTacGia.setBounds(10, 58, 72, 15);
 		panel.add(lbTenTacGia);
 		
-		JLabel lbNamSinh = new JLabel("Năm sinh");
+		JLabel lbNamSinh = new JLabel("Năm sinh*");
 		lbNamSinh.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lbNamSinh.setEnabled(true);
 		lbNamSinh.setBounds(10, 95, 61, 15);
@@ -200,8 +202,9 @@ public class NhapTacGia extends JFrame {
 					String nammat = tfNamMat.getText();
 					String quequan = tfQueQuan.getText();
 					
-					if(tfNamSinh.getText().equals("")){
-						namsinh = "NULL";
+					if (ValidateUtil.checkAnyEmpty(matacgia, tentacgia, namsinh)) {
+						JOptionPane.showMessageDialog(null,"Vui lòng nhập đủ thông tin","Thông báo",JOptionPane.ERROR_MESSAGE);
+						return;
 					}
 					
 					if(tfNamMat.getText().equals("")){
@@ -225,6 +228,7 @@ public class NhapTacGia extends JFrame {
 						JOptionPane.showMessageDialog(null,"Lỗi","Thông báo",JOptionPane.ERROR_MESSAGE);
 					}
 
+					dispose();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -252,7 +256,7 @@ public class NhapTacGia extends JFrame {
 					
 					String matacgia = tfMaTacGia.getText();
 					
-					if(matacgia.length()> 0 && matacgia.length()!= 4){
+					if(matacgia.length() > 5){
 						JOptionPane.showMessageDialog(null,"Mã tác giả không đúng với quy định","Thông báo",JOptionPane.ERROR_MESSAGE);
 						tfMaTacGia.setText("");
 						tfMaTacGia.requestFocus();
