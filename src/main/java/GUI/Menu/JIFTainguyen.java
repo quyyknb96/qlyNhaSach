@@ -186,8 +186,8 @@ public class JIFTainguyen extends JInternalFrame {
         KhaiBaoSach frame;
         try {
             frame = new KhaiBaoSach();
-            desktop.add(frame);
             frame.setVisible(true);
+            desktop.add(frame);
             frame.setSelected(true);
         } catch (Exception ex) {
             Logger.getLogger(JIFTainguyen.class.getName()).log(Level.SEVERE, null, ex);
