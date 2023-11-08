@@ -128,6 +128,7 @@ public class TacGia extends JFrame {
                 tfNamMat.setText("");
                 tfNamSinh.setText("");
                 tfQueQuan.setText("");
+                mtg = "";
                 LoadTable();
             }
         });
@@ -155,14 +156,11 @@ public class TacGia extends JFrame {
                         tfMaTacGia.requestFocus();
                     } else {
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                        String sql = String.format("SELECT MATACGIA FROM TACGIA WHERE MATACGIA <> '%s'", mtg);
+                        String sql = String.format("SELECT MATACGIA FROM TACGIA WHERE MATACGIA <> '%s' AND MATACGIA = '%s'", mtg, tfMaTacGia.getText().toUpperCase());
                         ResultSet rs = statement.executeQuery(sql);
 
-                        while (rs.next()) {
-                            if (tfMaTacGia.getText().toUpperCase().equals(rs.getString("MATACGIA"))) {
-                                JOptionPane.showMessageDialog(null, "Mã tác giả bị trùng");
-                                tfMaTacGia.setText("");
-                            }
+                        if (rs.next()) {
+                            JOptionPane.showMessageDialog(null, "Mã tác giả bị trùng");
                         }
                     }
                 } catch (Exception e) {
@@ -237,10 +235,7 @@ public class TacGia extends JFrame {
                     quequan = "NULL";
                 }
 
-                if (matacgia.length() > 5) {
-                    JOptionPane.showMessageDialog(null, "Mã tác giả không đúng quy định");
-                    tfMaTacGia.requestFocus();
-                } else {
+                if (validateMaTacGia(matacgia)) {
                     try {
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                         String sql = String.format("INSERT INTO TACGIA VALUES ('%s','%s','%s','%s','%s')", matacgia.toUpperCase(), tentacgia.toUpperCase(), namsinh, nammat, quequan.toUpperCase());
@@ -291,6 +286,29 @@ public class TacGia extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean validateMaTacGia(String matacgia) {
+        if (matacgia.length() > 5) {
+            JOptionPane.showMessageDialog(null, "Mã tác giả không đúng quy định");
+            tfMaTacGia.requestFocus();
+            return false;
+        } else {
+            try {
+                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+                String sql = String.format("SELECT MATACGIA FROM TACGIA WHERE MATACGIA <> '%s' AND MATACGIA = '%s'", mtg, tfMaTacGia.getText().toUpperCase());
+                ResultSet rs = statement.executeQuery(sql);
+
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null, "Mã tác giả bị trùng");
+                    return false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {

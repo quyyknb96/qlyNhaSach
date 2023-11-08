@@ -381,27 +381,7 @@ public class KhaiBaoSach extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         String masach = tfMaSach.getText();
-                        if (masach.length() <= 13) {
-                            try {
-                                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                                String sql = "SELECT MASACH FROM SACH";
-                                ResultSet rs = statement.executeQuery(sql);
-                                while (rs.next()) {
-                                    if (masach.equals(rs.getString("MASACH"))) {
-                                        JOptionPane.showMessageDialog(null, "Sách đã được khai báo", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                                        tfMaSach.setText("");
-                                    }
-                                }
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Mã sách không đúng quy định!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                            tfMaSach.setText("");
-                        }
-
-
+                        validateMaSach(masach);
                     }
                 });
 
@@ -448,6 +428,8 @@ public class KhaiBaoSach extends JFrame {
                         JOptionPane.showMessageDialog(null, "Yêu cầu nhập đầy đủ thông tin", "Thông báo", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
+                    assert masach != null;
+                    if (!validateMaSach(masach)) return;
 
                     if (tfLanTB.getText().equals("")) {
                         lantb = "NULL";
@@ -478,10 +460,35 @@ public class KhaiBaoSach extends JFrame {
                     }
 
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Không khai báo dữ liệu sách được", "Thông báo", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private boolean validateMaSach(String masach) {
+        if (masach.length() <= 13) {
+            try {
+                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+                String sql = "SELECT MASACH FROM SACH";
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    if (masach.equals(rs.getString("MASACH"))) {
+                        JOptionPane.showMessageDialog(null, "Mã sách đã tồn tại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Mã sách không đúng quy định!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            tfMaSach.setText("");
+            return false;
+        }
+        return true;
     }
 
     private void reloadComboBoxTacGia() {

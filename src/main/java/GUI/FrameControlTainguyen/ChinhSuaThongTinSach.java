@@ -5,15 +5,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.sql.*;
-import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class ChinhSuaThongTinSach extends JFrame {
 
@@ -325,36 +323,32 @@ public class ChinhSuaThongTinSach extends JFrame {
                     public void run() {
                         inUse = "Ma sach";
                         try {
-                            Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                            String sql = "SELECT MASACH FROM SACH";
-                            ResultSet rs = statement.executeQuery(sql);
-                            tfmasach.setText("");
-                            tfmatacgia.setText("");
-                            tftensach.setText("");
-                            tflinhvuc.setText("");
-                            tfloaisach.setText("");
                             int n = tfMaSach.getText().length();
 
                             if (n > 13) {
                                 modelList.removeAllElements();
-                                n = 0;
                                 JOptionPane.showMessageDialog(null, "Mã sách dài hơn quy định!", "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
-                                tfMaSach.setText("");
+                                return;
                             }
 
                             if (n >= 1) {
+                                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+                                String sql = "SELECT MASACH FROM SACH where MASACH like '" + tfMaSach.getText() + "%'";
+                                ResultSet rs = statement.executeQuery(sql);
+                                tfmasach.setText("");
+                                tfmatacgia.setText("");
+                                tftensach.setText("");
+                                tflinhvuc.setText("");
+                                tfloaisach.setText("");
                                 modelList.removeAllElements();
                                 while (rs.next()) {
                                     String s = rs.getString("MASACH");
-                                    if (s.substring(0, n).equals(tfMaSach.getText())) {
-                                        modelList.addElement(rs.getString("MASACH"));
-                                    }
+                                    modelList.addElement(rs.getString("MASACH"));
                                 }
-                            }
 
-                            if (modelList.isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Mã sách không tồn tại", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                                tfMaSach.setText("");
+                                if (modelList.isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Mã sách không tồn tại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
