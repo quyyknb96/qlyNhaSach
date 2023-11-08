@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -85,7 +86,7 @@ public class NhapSach extends JFrame {
         tfSoLuong.setBounds(94, 85, 109, 20);
         panel.add(tfSoLuong);
 
-        JLabel lbSoLuong = new JLabel("Số lượng");
+        JLabel lbSoLuong = new JLabel("Số lượng*");
         lbSoLuong.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         lbSoLuong.setBounds(15, 86, 64, 17);
         panel.add(lbSoLuong);
@@ -346,6 +347,14 @@ public class NhapSach extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                Integer sl = null;
+                try {
+                    sl = Integer.valueOf(tfSoLuong.getText());
+                } catch (Exception ignore) {}
+                if (sl == null) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 if (inUse.equals("Ma sach")) {
                     String ngaynhap = null;
@@ -359,7 +368,6 @@ public class NhapSach extends JFrame {
                     }
                     try {
                         String ms = tfMaSach.getText();
-                        int sl = Integer.valueOf(tfSoLuong.getText());
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                         String sql = String.format("INSERT INTO NHATKINHAPSACH(MASACH,SOLUONG,NGAYNHAP)VALUES ('%s','%d','%s')", ms, sl, ngaynhap);
                         int n = statement.executeUpdate(sql);
@@ -368,7 +376,7 @@ public class NhapSach extends JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "Lỗi", "Thông báo", JOptionPane.ERROR_MESSAGE);
                         }
-
+                        capNhatSoLuongSachTrongKho(ms, sl);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -387,7 +395,6 @@ public class NhapSach extends JFrame {
                     }
                     try {
                         String ts = tfTenSach.getText();
-                        int sl = Integer.valueOf(tfSoLuong.getText());
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                         String query = String.format("SELECT MASACH FROM SACH WHERE TENSACH = '%s'", ts);
                         String ms = null;
@@ -405,8 +412,7 @@ public class NhapSach extends JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "Lỗi", "Thông báo", JOptionPane.ERROR_MESSAGE);
                         }
-
-
+                        capNhatSoLuongSachTrongKho(ms, sl);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -454,6 +460,19 @@ public class NhapSach extends JFrame {
 
             }
         });
+    }
+
+    private void capNhatSoLuongSachTrongKho(String masach, Integer soluong) throws SQLException {
+        Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+        String query = String.format("SELECT MASACH, TONGSOLUONG, SOLUONGCON FROM KHO WHERE MASACH = '%s'", masach);
+        ResultSet rs = statement.executeQuery(query);
+        if (!rs.next()) {
+            query = String.format("INSERT INTO KHO (MASACH,TONGSOLUONG,SOLUONGCON) VALUES ('%s','%d','%d')", masach, soluong, soluong);
+        } else {
+            query = String.format("update KHO set TONGSOLUONG = TONGSOLUONG + %d , SOLUONGCON = SOLUONGCON + %d where MASACH = '%s'", soluong, soluong, masach);
+        }
+        statement.executeUpdate(query);
+        JOptionPane.showMessageDialog(null, "Cập nhật số lượng trong kho thành công", "Hoàn tất", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {

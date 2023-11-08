@@ -185,8 +185,7 @@ public class KiemTraSoLuong extends JFrame {
 							 inUse = "Ten sach";
 							try {
 
-								Statement statement = ketnoi.ConnectDB.getConnection()
-										.createStatement();
+								Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
 								String sql = "SELECT TENSACH FROM SACH WHERE TENSACH LIKE '"
 										+ tfTenSach.getText() + "%'";
 								ResultSet rs = statement.executeQuery(sql);
@@ -235,8 +234,7 @@ public class KiemTraSoLuong extends JFrame {
 				    {
 						inUse = "Ma sach";
 						try {
-							Statement statement = ketnoi.ConnectDB.getConnection()
-									.createStatement();
+							Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
 							String sql = "SELECT MASACH FROM SACH";
 							ResultSet rs = statement.executeQuery(sql);
 							txtSoLuongCon.setText("");
