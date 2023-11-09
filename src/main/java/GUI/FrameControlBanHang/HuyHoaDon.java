@@ -28,7 +28,7 @@ public class HuyHoaDon extends JFrame {
 		setSize(507,254);
 		setLocationRelativeTo(null);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.FrameControlCongcu.TimMaSach.class.getResource("/data/img/delete.png")));
-		setTitle("Hủy hóa đơn");
+		setTitle("Kiểm tra hóa đơn");
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -38,12 +38,19 @@ public class HuyHoaDon extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton bXoa = new JButton("Xóa");
+		JButton bXoa = new JButton("Trả Hàng & Hoàn Tền");
 		bXoa.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		bXoa.setBounds(10, 178, 481, 36);
+		bXoa.setBounds(265, 178, 220, 30);
 		bXoa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		bXoa.setContentAreaFilled(false);
 		getContentPane().add(bXoa);
+
+		JButton bKiemTra = new JButton("Xem hóa đơn");
+		bKiemTra.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		bKiemTra.setBounds(10, 178, 220, 30);
+		bKiemTra.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		bKiemTra.setContentAreaFilled(false);
+		getContentPane().add(bKiemTra);
 		
 		LoadTable();
 		
