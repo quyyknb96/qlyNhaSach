@@ -1,5 +1,7 @@
 package GUI.FrameControlBanHang;
 
+import util.ValidateUtil;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,11 +36,12 @@ public class HoaDon extends JFrame {
     private JTextField tfmasach;
     private JTextField tfsoluong;
     JLabel lbTenSach, lbTenTacGia;
+    JButton bTinhTien;
     DefaultListModel modelList = new DefaultListModel();
     JList list = new JList(modelList);
     int dem = 0;
-    double tien[];
-    double tongTien = 0;
+    long tien[];
+    long tongTien = 0;
     int maHD;
     int i;
     int mucgiamgia;
@@ -186,10 +190,11 @@ public class HoaDon extends JFrame {
         bSua.setContentAreaFilled(false);
         getContentPane().add(bSua);
 
-        JButton bTinhTien = new JButton("Tính tiền");
+        bTinhTien = new JButton("Thanh toán: " + tongTien);
         bTinhTien.setBounds(483, 339, 200, 38);
         bTinhTien.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         bTinhTien.setContentAreaFilled(false);
+        bTinhTien.setHorizontalTextPosition(SwingConstants.LEFT);
         getContentPane().add(bTinhTien);
 
         tfMaSach.getDocument().addDocumentListener(new DocumentListener() {
@@ -207,7 +212,7 @@ public class HoaDon extends JFrame {
                     public void run() {
                         try {
                             Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                            String sql = "SELECT MASACH FROM SACH";
+                            String sql = "SELECT MASACH FROM SACH where MASACH like '" + tfMaSach.getText() + "%'";
                             ResultSet rs = statement.executeQuery(sql);
                             lbTenSach.setText("");
                             lbTenTacGia.setText("");
@@ -215,37 +220,19 @@ public class HoaDon extends JFrame {
 
                             if (n > 13) {
                                 modelList.removeAllElements();
-                                n = 0;
                                 JOptionPane.showMessageDialog(null, "Mã sách dài hơn quy định!", "Không hợp lệ", JOptionPane.ERROR_MESSAGE);
-                                tfMaSach.setText("");
+                                return;
                             }
 
-                            if (n >= 1 && n <= 13) {
+                            if (n >= 1) {
                                 modelList.removeAllElements();
                                 while (rs.next()) {
-                                    String s = rs.getString("MASACH");
-                                    if (s.substring(0, n).equals(tfMaSach.getText())) {
-                                        modelList.addElement(rs.getString("MASACH"));
-                                    }
+                                    modelList.addElement(rs.getString("MASACH"));
                                 }
                             }
 
                             if (modelList.isEmpty()) {
                                 JOptionPane.showMessageDialog(null, "Mã sách không tồn tại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                                tfMaSach.setText("");
-                            }
-
-                            if (n == 13) {
-                                String sql1 = String.format("SELECT SOLUONGCON FROM KHO WHERE MASACH = '%s'", tfMaSach.getText());
-                                ResultSet rs1 = statement.executeQuery(sql1);
-
-                                while (rs1.next()) {
-                                    if (rs1.getInt("SOLUONGCON") == 0) {
-                                        JOptionPane.showMessageDialog(null, "Sách đã hết!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                                        tfMaSach.setText("");
-                                        tfMaSach.requestFocus();
-                                    }
-                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -269,7 +256,21 @@ public class HoaDon extends JFrame {
                 tfMaSach.setText(String.valueOf(list.getSelectedValue()));
                 modelList.clear();
                 tfSoLuong.requestFocus();
+                Statement statement;
+                try {
+                    statement = ketnoi.ConnectDB.getConnection().createStatement();
+                    String sql1 = String.format("SELECT SOLUONGCON FROM KHO WHERE MASACH = '%s'", tfMaSach.getText());
+                    ResultSet rs1 = statement.executeQuery(sql1);
+                    int sl = rs1.next() ? rs1.getInt("SOLUONGCON") : 0;
 
+                    if (sl == 0) {
+                        JOptionPane.showMessageDialog(null, "Sách đã hết!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                        tfMaSach.setText("");
+                        tfMaSach.requestFocus();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -312,6 +313,8 @@ public class HoaDon extends JFrame {
                 tableRecords.removeAllElements();
                 table.setModel(modelTable);
                 dem = 0;
+                tongTien = 0;
+                bTinhTien.setText("Thanh toán: " + tongTien);
             }
         });
 
@@ -322,17 +325,20 @@ public class HoaDon extends JFrame {
 
                 try {
                     String masach = tfMaSach.getText();
-                    String sl = tfSoLuong.getText();
-                    if (tfSoLuong.getText().equals("")) {
-                        sl = "1";
-                    }
                     Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                     String sql = String.format("SELECT TENSACH FROM SACH WHERE MASACH = '%s'", masach);
                     ResultSet rs = statement.executeQuery(sql);
-                    while (rs.next()) {
+                    String tenSach = rs.next() ? rs.getString("TENSACH") : null;
+                    if (ValidateUtil.checkAnyEmpty(tenSach)) {
+                        JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sách", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        String sl = tfSoLuong.getText();
+                        if (tfSoLuong.getText().equals("")) {
+                            sl = "1";
+                        }
                         Vector record = new Vector();
                         record.add(tfMaSach.getText());
-                        record.add(rs.getString("TENSACH"));
+                        record.add(tenSach);
                         record.add(sl);
                         int index = -1;
                         for (int j = 0; j < tableRecords.size(); j++) {
@@ -346,18 +352,19 @@ public class HoaDon extends JFrame {
                         }
                         if (index == -1) {
                             tableRecords.add(record);
-                            table.setModel(new DefaultTableModel(tableRecords, tableTitle));
+                            kiemTraSoLuongToiDa(record);
                             dem = dem + 1;
                         } else {
                             Integer slOld = Integer.valueOf((String) ((Vector<?>) tableRecords.get(index)).get(2));
                             record.set(2, String.valueOf(slOld + Integer.parseInt(sl)));
+                            kiemTraSoLuongToiDa(record);
                             tableRecords.set(index, record);
-                            table.setModel(new DefaultTableModel(tableRecords, tableTitle));
                         }
+                        table.setModel(new DefaultTableModel(tableRecords, tableTitle));
                         tfMaSach.setText("");
                         tfSoLuong.setText("");
+                        tinhTongTienHoaDon();
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -378,9 +385,12 @@ public class HoaDon extends JFrame {
                     record.add(tfmasach.getText());
                     record.add(dataDongDaChon.get(1).toString());
                     record.add(tfsoluong.getText());
+                    kiemTraSoLuongToiDa(record);
+                    tfsoluong.setText((String) record.get(2));
                     tableRecords.set(dongDaChon, record);
                     table.setModel(new DefaultTableModel(tableRecords, tableTitle));
                 }
+                tinhTongTienHoaDon();
             }
         });
 
@@ -415,6 +425,7 @@ public class HoaDon extends JFrame {
                         tfsoluong.setText("");
                     }
                 }
+                tinhTongTienHoaDon();
             }
         });
 
@@ -422,66 +433,95 @@ public class HoaDon extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-                tien = new double[dem];
-
-                for (i = 0; i < dem; i++) {
-                    Vector duLieu = (Vector) tableRecords.get(i);
-                    String masach = String.valueOf(duLieu.get(0));
-                    int soluong = Integer.valueOf(duLieu.get(2).toString());
-
-                    try {
-
-                        Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                        String sql1 = "SELECT * FROM SACHKHUYENMAI";
-                        ResultSet rs1 = statement.executeQuery(sql1);
-
-                        while (rs1.next()) {
-                            if (masach.equals(rs1.getString("MASACH"))) {
-                                mucgiamgia = rs1.getInt("MUCGIAMGIA");
-                            } else {
-                                mucgiamgia = 0;
-                            }
-                        }
-
-                        String sql = String.format("SELECT GIABIA FROM THONGTINXUATBAN WHERE MASACH = '%s'", masach);
-                        ResultSet rs = statement.executeQuery(sql);
-
-                        while (rs.next()) {
-                            int gia = rs.getInt("GIABIA");
-                            tien[i] = (gia * soluong) - (gia * soluong * mucgiamgia / 100);
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                if (ValidateUtil.checkAnyEmpty(tfTenKhachHang.getText())) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên khách hàng", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                for (int i = 0; i < dem; i++) {
-                    tongTien = tongTien + tien[i];
+                if (dem < 1) {
+                    JOptionPane.showMessageDialog(null, "Vui lòng mua hàng trước khi thanh toán", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
+
+                tinhTongTienHoaDon();
                 insertHoaDon();
                 insertChiTietHoaDon();
-
-                JOptionPane.showMessageDialog(null, "Tổng số tiền là: " + tongTien + " đồng");
+                JOptionPane.showMessageDialog(null, "Thanh toán thành công");
+                bReset.doClick();
                 tongTien = 0;
             }
         });
+    }
+
+    private void tinhTongTienHoaDon() {
+        tongTien = 0;
+        tien = new long[dem];
+
+        for (i = 0; i < dem; i++) {
+            Vector duLieu = (Vector) tableRecords.get(i);
+            String masach = String.valueOf(duLieu.get(0));
+            int soluong = Integer.parseInt((String) duLieu.get(2));
+
+            try {
+
+                Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+                String sql1 = "SELECT * FROM SACHKHUYENMAI";
+                ResultSet rs1 = statement.executeQuery(sql1);
+
+                while (rs1.next()) {
+                    if (masach.equals(rs1.getString("MASACH"))) {
+                        mucgiamgia = rs1.getInt("MUCGIAMGIA");
+                    } else {
+                        mucgiamgia = 0;
+                    }
+                }
+
+                String sql = String.format("SELECT GIABIA FROM THONGTINXUATBAN WHERE MASACH = '%s'", masach);
+                ResultSet rs = statement.executeQuery(sql);
+
+                while (rs.next()) {
+                    int gia = rs.getInt("GIABIA");
+                    tien[i] = (long) soluong * gia * (100 - mucgiamgia) / 100;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        for (int i = 0; i < dem; i++) {
+            tongTien = tongTien + tien[i];
+        }
+        bTinhTien.setText("Thanh toán: " + tongTien);
+    }
+
+    private void kiemTraSoLuongToiDa(Vector record) {
+        try {
+            Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
+            String sql = String.format("SELECT SOLUONGCON FROM KHO WHERE MASACH = '%s'", record.get(0));
+            ResultSet rs1 = statement.executeQuery(sql);
+            int sl = rs1.next() ? rs1.getInt("SOLUONGCON") : 0;
+
+            if (sl < Integer.parseInt((String) record.get(2))) {
+                JOptionPane.showMessageDialog(null, "Số lượng sách vượt hạn mức. Đã tự động điều chỉnh!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                record.set(2, String.valueOf(sl));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void insertHoaDon() {
         try {
             maHD = 1;
             String tenKH = tfTenKhachHang.getText();
-            String ngay = null;
-            if (tenKH.equals("")) {
-                tenKH = "NULL";
-            }
+            String ngay;
 
             if (tfNgayLap.getText().equals("")) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Date date = new Date();
-                ngay = String.valueOf(dateFormat.format(date));
+                ngay = dateFormat.format(date);
             } else {
                 String[] date = tfNgayLap.getText().split("/");
                 ngay = date[2] + "/" + date[1] + "/" + date[0];
@@ -525,7 +565,10 @@ public class HoaDon extends JFrame {
                 }
 
                 String sql2 = String.format("INSERT INTO CHITIETHOADON VALUES('%d','%s','%d','%d')", maHD, masach, soluong, mucgiamgia);
-                int n = statement.executeUpdate(sql2);
+                statement.executeUpdate(sql2);
+
+                String query = String.format("update KHO set SOLUONGCON = SOLUONGCON - %d where MASACH = '%s'", soluong, masach);
+                statement.executeUpdate(query);
 
             } catch (Exception e) {
                 e.printStackTrace();
