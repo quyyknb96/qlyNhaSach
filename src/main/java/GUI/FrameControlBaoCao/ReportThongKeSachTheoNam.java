@@ -3,13 +3,14 @@ package GUI.FrameControlBaoCao;
 import javax.swing.JFrame;
 import java.awt.Container;
 import java.awt.Toolkit;
+
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.*;
 
 public class ReportThongKeSachTheoNam extends JFrame {
-	
-	public ReportThongKeSachTheoNam(String fileName){
-		super("Thống kê số lượng sách nhập và bán ra trong năm");
+
+    public ReportThongKeSachTheoNam(String fileName) {
+        super("Thống kê số lượng sách nhập và bán ra trong năm");
         try {
             JasperPrint print = JasperFillManager.fillReport(fileName, null, ketnoi.ConnectDB.getConnection());
             JRViewer viewer = new JRViewer(print);
@@ -24,12 +25,12 @@ public class ReportThongKeSachTheoNam extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.Login.class.getResource("/data/img/report.png")));
-	}
-	
-	public static void main(String[] args) {
-		ReportThongKeSachTheoNam viewer = new ReportThongKeSachTheoNam("Report/rp_TkSachTheoNam.jasper");
-		viewer.setVisible(true);
-	}
+    }
+
+    public static void main(String[] args) {
+        ReportThongKeSachTheoNam viewer = new ReportThongKeSachTheoNam("Report/rp_TkSachTheoNam.jasper");
+        viewer.setVisible(true);
+    }
 
 }
 
