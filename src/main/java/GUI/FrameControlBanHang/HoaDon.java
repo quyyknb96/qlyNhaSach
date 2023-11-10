@@ -465,16 +465,10 @@ public class HoaDon extends JFrame {
             try {
 
                 Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                String sql1 = "SELECT * FROM SACHKHUYENMAI";
+                String sql1 = "SELECT * FROM sachkhuyenmai where masach = '" + masach + "'";
                 ResultSet rs1 = statement.executeQuery(sql1);
 
-                while (rs1.next()) {
-                    if (masach.equals(rs1.getString("MASACH"))) {
-                        mucgiamgia = rs1.getInt("MUCGIAMGIA");
-                    } else {
-                        mucgiamgia = 0;
-                    }
-                }
+                mucgiamgia = rs1.next() ? rs1.getInt("MUCGIAMGIA") : 0;
 
                 String sql = String.format("SELECT GIABIA FROM THONGTINXUATBAN WHERE MASACH = '%s'", masach);
                 ResultSet rs = statement.executeQuery(sql);
@@ -553,16 +547,10 @@ public class HoaDon extends JFrame {
             try {
 
                 Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
-                String sql1 = "SELECT * FROM SACHKHUYENMAI";
+                String sql1 = "SELECT * FROM sachkhuyenmai where masach = '" + masach + "'";
                 ResultSet rs1 = statement.executeQuery(sql1);
 
-                while (rs1.next()) {
-                    if (masach.equals(rs1.getString("MASACH"))) {
-                        mucgiamgia = rs1.getInt("MUCGIAMGIA");
-                    } else {
-                        mucgiamgia = 0;
-                    }
-                }
+                mucgiamgia = rs1.next() ? rs1.getInt("MUCGIAMGIA") : 0;
 
                 String sql2 = String.format("INSERT INTO CHITIETHOADON VALUES('%d','%s','%d','%d')", maHD, masach, soluong, mucgiamgia);
                 statement.executeUpdate(sql2);
