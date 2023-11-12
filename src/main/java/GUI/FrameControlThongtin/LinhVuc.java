@@ -43,19 +43,19 @@ public class LinhVuc extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lbMaLinhVuc = new JLabel("Mã lĩnh vực");
+        JLabel lbMaLinhVuc = new JLabel("Mã lĩnh vực*");
         lbMaLinhVuc.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbMaLinhVuc.setBounds(10, 24, 73, 14);
+        lbMaLinhVuc.setBounds(10, 24, 80, 14);
         panel.add(lbMaLinhVuc);
 
         tfMaLinhVuc = new JTextField();
-        tfMaLinhVuc.setBounds(84, 22, 80, 20);
+        tfMaLinhVuc.setBounds(88, 22, 80, 20);
         panel.add(tfMaLinhVuc);
         tfMaLinhVuc.setColumns(10);
 
-        JLabel lbTenLinhVuc = new JLabel("Tên lĩnh vực");
+        JLabel lbTenLinhVuc = new JLabel("Tên lĩnh vực*");
         lbTenLinhVuc.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbTenLinhVuc.setBounds(189, 25, 73, 14);
+        lbTenLinhVuc.setBounds(189, 25, 80, 14);
         panel.add(lbTenLinhVuc);
 
         tfTenLinhVuc = new JTextField();

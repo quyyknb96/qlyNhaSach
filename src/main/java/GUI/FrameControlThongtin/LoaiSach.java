@@ -52,14 +52,14 @@ public class LoaiSach extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lbMaLoaiSach = new JLabel("Mã loại sách");
+        JLabel lbMaLoaiSach = new JLabel("Mã loại sách*");
         lbMaLoaiSach.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbMaLoaiSach.setBounds(10, 32, 71, 14);
+        lbMaLoaiSach.setBounds(10, 32, 80, 14);
         panel.add(lbMaLoaiSach);
 
-        JLabel lbTenLoaiSach = new JLabel("Tên loại sách");
+        JLabel lbTenLoaiSach = new JLabel("Tên loại sách*");
         lbTenLoaiSach.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbTenLoaiSach.setBounds(196, 32, 81, 14);
+        lbTenLoaiSach.setBounds(196, 32, 85, 14);
         panel.add(lbTenLoaiSach);
 
         tfMaLoaiSach = new JTextField();

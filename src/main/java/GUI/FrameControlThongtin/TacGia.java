@@ -42,14 +42,14 @@ public class TacGia extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lbMaTacGia = new JLabel("Mã tác giả");
+        JLabel lbMaTacGia = new JLabel("Mã tác giả*");
         lbMaTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbMaTacGia.setBounds(10, 26, 70, 15);
+        lbMaTacGia.setBounds(10, 26, 75, 15);
         panel.add(lbMaTacGia);
 
-        JLabel lbTenTacGia = new JLabel("Tên tác giả");
+        JLabel lbTenTacGia = new JLabel("Tên tác giả*");
         lbTenTacGia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbTenTacGia.setBounds(160, 26, 70, 15);
+        lbTenTacGia.setBounds(160, 26, 75, 15);
         panel.add(lbTenTacGia);
 
         tfMaTacGia = new JTextField();
@@ -82,9 +82,9 @@ public class TacGia extends JFrame {
         tfQueQuan.setBounds(228, 52, 137, 20);
         panel.add(tfQueQuan);
 
-        JLabel lbNamSinh = new JLabel("Năm sinh");
+        JLabel lbNamSinh = new JLabel("Năm sinh*");
         lbNamSinh.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        lbNamSinh.setBounds(375, 26, 59, 15);
+        lbNamSinh.setBounds(375, 26, 62, 15);
         panel.add(lbNamSinh);
 
         tfNamSinh = new JTextField();

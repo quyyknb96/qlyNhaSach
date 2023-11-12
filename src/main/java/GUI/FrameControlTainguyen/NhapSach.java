@@ -1,5 +1,7 @@
 package GUI.FrameControlTainguyen;
 
+import util.ValidateUtil;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -368,6 +370,10 @@ public class NhapSach extends JFrame {
                     }
                     try {
                         String ms = tfMaSach.getText();
+                        if (ValidateUtil.checkAnyEmpty(ms)) {
+                            JOptionPane.showMessageDialog(null, "Lỗi", "Vui lòng chọn mã sách", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                         String sql = String.format("INSERT INTO NHATKINHAPSACH(MASACH,SOLUONG,NGAYNHAP)VALUES ('%s','%d','%s')", ms, sl, ngaynhap);
                         int n = statement.executeUpdate(sql);
@@ -395,6 +401,10 @@ public class NhapSach extends JFrame {
                     }
                     try {
                         String ts = tfTenSach.getText();
+                        if (ValidateUtil.checkAnyEmpty(ts)) {
+                            JOptionPane.showMessageDialog(null, "Lỗi", "Vui lòng chọn tên sách", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                         Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
                         String query = String.format("SELECT MASACH FROM SACH WHERE TENSACH = '%s'", ts);
                         String ms = null;

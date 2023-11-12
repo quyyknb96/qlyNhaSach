@@ -494,7 +494,7 @@ public class HoaDon extends JFrame {
             Statement statement = ketnoi.ConnectDB.getConnection().createStatement();
             String sql = String.format("SELECT SOLUONGCON FROM KHO WHERE MASACH = '%s'", record.get(0));
             ResultSet rs1 = statement.executeQuery(sql);
-            int sl = rs1.next() ? rs1.getInt("SOLUONGCON") : 0;
+            int sl = rs1.next() ? rs1.getInt("SOLUONGCON") : 1;
 
             if (sl < Integer.parseInt((String) record.get(2))) {
                 JOptionPane.showMessageDialog(null, "Số lượng sách vượt hạn mức. Đã tự động điều chỉnh!", "Thông báo", JOptionPane.ERROR_MESSAGE);

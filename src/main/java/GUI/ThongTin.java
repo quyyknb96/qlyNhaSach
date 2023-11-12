@@ -46,11 +46,11 @@ public class ThongTin extends javax.swing.JFrame {
         jLabel3.setText("Version 5.0 Demo");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        jLabel4.setText("Build and Copyright by A7 Group");
+        jLabel4.setText("Build and Copyright @2023");
 
         jList1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Tác giả:", "" };
+            String[] strings = { "Tác giả:", "Đỗ Quốc Tuấn" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
