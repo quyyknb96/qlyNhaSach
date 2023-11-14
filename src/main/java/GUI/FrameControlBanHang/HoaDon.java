@@ -1,5 +1,6 @@
 package GUI.FrameControlBanHang;
 
+import GUI.FrameControlBaoCao.ReportHoadon;
 import util.ValidateUtil;
 
 import javax.swing.*;
@@ -447,6 +448,8 @@ public class HoaDon extends JFrame {
                 insertHoaDon();
                 insertChiTietHoaDon();
                 JOptionPane.showMessageDialog(null, "Thanh toán thành công");
+                ReportHoadon viewer = new ReportHoadon("Report/rp_Hoadon.jasper", maHD);
+                viewer.setVisible(true);
                 bReset.doClick();
                 tongTien = 0;
             }

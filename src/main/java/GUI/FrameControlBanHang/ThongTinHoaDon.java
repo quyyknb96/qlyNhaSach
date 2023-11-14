@@ -1,5 +1,7 @@
 package GUI.FrameControlBanHang;
 
+import GUI.FrameControlBaoCao.ReportHoadon;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -33,12 +35,25 @@ public class ThongTinHoaDon extends JFrame {
 
         JButton bOK = new JButton("OK");
         bOK.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        bOK.setBounds(375, 350, 120, 25);
+        bOK.setBounds(450, 350, 120, 25);
         bOK.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         bOK.setContentAreaFilled(false);
         getContentPane().add(bOK);
 
+        JButton bIn = new JButton("In hóa đơn");
+        bIn.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        bIn.setBounds(275, 350, 120, 25);
+        bIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        bIn.setContentAreaFilled(false);
+        getContentPane().add(bIn);
+
         bOK.addActionListener(e -> dispose());
+
+        bIn.addActionListener(e -> {
+            ReportHoadon viewer = new ReportHoadon("Report/rp_Hoadon.jasper", maHoaDon);
+            viewer.setVisible(true);
+            bOK.doClick();
+        });
     }
 
     public void LoadTable() {
@@ -88,7 +103,7 @@ public class ThongTinHoaDon extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ThongTinHoaDon(1).setVisible(true);
+        new ThongTinHoaDon(5).setVisible(true);
     }
 
     public void setSelected(boolean b) {
